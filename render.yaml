@@ -1,0 +1,54 @@
+services:
+  # ─── API FastAPI ───────────────────────────────────────
+  - type: web
+    name: projet7-dominique-api
+    runtime: docker
+    dockerfilePath: ./api/Dockerfile
+    dockerContext: .
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "8000"
+      - key: HOST
+        value: "0.0.0.0"
+      - key: PYTHONPATH
+        value: "/app"
+
+  # ─── Dashboard Streamlit ───────────────────────────────
+  - type: web
+    name: projet7-dominique-dashboard
+    runtime: docker
+    dockerfilePath: ./streamlit_app/Dockerfile
+    dockerContext: .
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /_stcore/health
+    envVars:
+      - key: PORT
+        value: "8501"
+      - key: API_URL
+        # Remplacer par l'URL réelle de votre API Render après déploiement
+        value: "https://projet7-dominique-api.onrender.com"
+      - key: MLFLOW_URL
+        value: "https://projet7-dominique-mlflow.onrender.com"
+      - key: STREAMLIT_SERVER_ADDRESS
+        value: "0.0.0.0"
+      - key: STREAMLIT_SERVER_PORT
+        value: "8501"
+
+  # ─── MLflow UI ─────────────────────────────────────────
+  - type: web
+    name: projet7-dominique-mlflow
+    runtime: docker
+    dockerfilePath: ./mlflow/Dockerfile
+    dockerContext: .
+    plan: free
+    autoDeploy: true
+    healthCheckPath: /
+    envVars:
+      - key: PORT
+        value: "5000"
+      - key: MLFLOW_TRACKING_URI
+        value: "/app/mlruns"

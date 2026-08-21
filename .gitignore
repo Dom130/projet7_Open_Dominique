@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# Environnements
+.env
+.venv
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Données (trop lourdes pour Git)
+data/
+*.csv
+!reports/*.csv
+!models/model_config.json
+
+# Modèles lourds (garder seulement config)
+models/*.pkl
+models/*.lgb
+models/*.json.bak
+
+# MLflow (garder mlruns pour le tracking)
+# mlruns/  <- décommentez si vous ne voulez pas tracker mlruns
+
+# Reports HTML (générés localement)
+reports/*.html
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+.dockerignore
+
+# Logs
+*.log
+logs/
+
+# Secrets
+.env.local
+secrets.json
+kaggle.json
