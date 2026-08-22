@@ -109,8 +109,8 @@ def test_preprocessor_fit_transform():
 def test_preprocessor_handles_unseen_categories():
     """Le préprocesseur gère les catégories inconnues au transform."""
     from src.preprocessing import CreditScoringPreprocessor
-    df_train = pd.DataFrame({"cat": ["A", "B", "A", "B"]})
-    df_test = pd.DataFrame({"cat": ["A", "C", "UNKNOWN"]})  # C et UNKNOWN non vus
+    df_train = pd.DataFrame({"cat": ["A", "B", "A", "B"], "num": [1.0, 2.0, 3.0, 4.0]})
+    df_test = pd.DataFrame({"cat": ["A", "C", "UNKNOWN"], "num": [1.0, 2.0, 3.0]})
     prep = CreditScoringPreprocessor()
     prep.fit(df_train)
     result = prep.transform(df_test)
