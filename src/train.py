@@ -31,9 +31,11 @@ MODEL_NAME = "credit-scoring-lgbm-dominique"
 def setup_mlflow(tracking_uri: str = None, experiment_name: str = None):
     """Configure MLflow."""
     if tracking_uri is None:
-        # Chemin par défaut : mlruns/ à la racine du projet
+        # Utiliser file:/// pour compatibilité Windows
         root = Path(__file__).resolve().parent.parent
-        tracking_uri = str(root / "mlruns")
+        mlruns_path = root / "mlruns"
+        mlruns_path.mkdir(exist_ok=True)
+        tracking_uri = mlruns_path.as_uri()  # → file:///C:/Users/.../mlruns
 
     mlflow.set_tracking_uri(tracking_uri)
     exp_name = experiment_name or EXPERIMENT_NAME
@@ -125,8 +127,8 @@ def train_with_mlflow(X_train, y_train, params=None, test_size=0.2, run_name=Non
         mlflow.log_metric("business_cost", metrics["business_cost"])
         mlflow.log_metric("normalized_cost", metrics["normalized_cost"])
 
-        # Log modèle
-        mlflow.lightgbm.log_model(model, artifact_path="model", registered_model_name=MODEL_NAME)
+        # Log modèle (sans registry pour le backend local filesystem)
+        mlflow.lightgbm.log_model(model, artifact_path="model")
 
         run_id = mlflow.active_run().info.run_id
         print(f"✅ Run MLflow: {run_id}")
