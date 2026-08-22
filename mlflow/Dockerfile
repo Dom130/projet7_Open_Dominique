@@ -9,7 +9,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir mlflow==2.9.2 gunicorn==21.2.0
 
-# Copier les runs MLflow trackés
+# Créer le dossier mlruns (vide si pas de runs trackés)
+RUN mkdir -p /app/mlruns
+
+# Copier les runs MLflow si disponibles (optionnel)
 COPY mlruns/ /app/mlruns/
 
 ENV MLFLOW_TRACKING_URI=/app/mlruns

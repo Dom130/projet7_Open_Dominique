@@ -1,0 +1,9 @@
+{
+  "threshold": 0.44,
+  "model_type": "LightGBM",
+  "feature_names": [],
+  "cost_fn": 10,
+  "cost_fp": 1,
+  "version": "1.0.0",
+  "note": "Entraîner le modèle avec 'python run.py train' pour générer model.pkl et preprocessor.pkl"
+}
