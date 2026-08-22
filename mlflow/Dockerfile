@@ -9,11 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir mlflow==2.9.2 gunicorn==21.2.0
 
-# Créer le dossier mlruns (vide si pas de runs trackés)
+# Créer le dossier mlruns vide
 RUN mkdir -p /app/mlruns
-
-# Copier les runs MLflow si disponibles (optionnel)
-COPY mlruns/ /app/mlruns/
 
 ENV MLFLOW_TRACKING_URI=/app/mlruns
 ENV PORT=5000
@@ -23,7 +20,6 @@ EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:5000/ || exit 1
 
-# 1 seul worker pour rester dans les limites mémoire du plan gratuit Render
 CMD mlflow server \
     --host 0.0.0.0 \
     --port ${PORT} \
