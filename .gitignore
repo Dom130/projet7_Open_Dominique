@@ -27,10 +27,9 @@ data/
 !reports/*.csv
 !models/model_config.json
 
-# Modèles lourds (garder seulement config)
-models/*.pkl
-models/*.lgb
-models/*.json.bak
+# Modèles - les artefacts sont trackés car < 100MB
+# models/*.pkl  ← décommentez si vous voulez exclure les pkl
+# models/*.lgb
 
 # MLflow (garder mlruns pour le tracking)
 # mlruns/  <- décommentez si vous ne voulez pas tracker mlruns
