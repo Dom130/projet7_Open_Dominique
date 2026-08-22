@@ -48,11 +48,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Créer les dossiers manquants pour que les Dockerfiles fonctionnent
-      - name: Prepare missing folders
+      # Créer uniquement les dossiers vides non trackés par Git
+      # Ne pas toucher models/model_config.json (déjà dans le repo)
+      - name: Prepare empty folders for Docker build
         run: |
-          mkdir -p models mlruns reports data
-          echo '{"threshold": 0.44, "model_type": "LightGBM", "feature_names": [], "version": "1.0.0"}' > models/model_config.json
+          mkdir -p reports data
 
       - name: Build API image
         run: docker build -f api/Dockerfile -t projet7-dominique-api:${{ github.sha }} .
