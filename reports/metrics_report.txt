@@ -1,14 +1,14 @@
 
 ================================================================================
-                    RAPPORT DE MÉTRIQUES - HOME CREDIT SCORING
+                    RAPPORT DE MÃ‰TRIQUES - HOME CREDIT SCORING
 ================================================================================
 
-PARAMÈTRES MÉTIER:
-  - Coût Faux Négatif (FN): 10 (client en défaut non détecté)
-  - Coût Faux Positif (FP): 1 (bon client refusé)
+PARAMÃˆTRES MÃ‰TIER:
+  - CoÃ»t Faux NÃ©gatif (FN): 10 (client en dÃ©faut non dÃ©tectÃ©)
+  - CoÃ»t Faux Positif (FP): 1 (bon client refusÃ©)
 
 --------------------------------------------------------------------------------
-SEUIL PAR DÉFAUT (0.5):
+SEUIL PAR DÃ‰FAUT (0.5):
 --------------------------------------------------------------------------------
   AUC:              0.7683
   Accuracy:         0.7550
@@ -20,7 +20,7 @@ SEUIL PAR DÉFAUT (0.5):
     TP: 927  |  FP: 3,964
     FN: 556  |  TN: 13,004
   
-  Coût métier:      9,524
+  CoÃ»t mÃ©tier:      9,524
 
 --------------------------------------------------------------------------------
 SEUIL OPTIMAL (0.44):
@@ -35,12 +35,12 @@ SEUIL OPTIMAL (0.44):
     TP: 1,042  |  FP: 5,003
     FN: 441  |  TN: 11,965
   
-  Coût métier:      9,413
+  CoÃ»t mÃ©tier:      9,413
 
 --------------------------------------------------------------------------------
 GAIN DU SEUIL OPTIMAL:
 --------------------------------------------------------------------------------
-  Réduction du coût: 111
-  Réduction relative: 1.2%
+  RÃ©duction du coÃ»t: 111
+  RÃ©duction relative: 1.2%
 
 ================================================================================
